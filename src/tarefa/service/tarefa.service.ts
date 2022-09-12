@@ -12,13 +12,20 @@ export class TarefaService {
     ) { }
 
     async findAll(): Promise<Tarefa[]> {
-        return this.tarefarepository.find()
+        return this.tarefarepository.find({
+            relations: {
+                categoria: true
+            }
+        })
     }
 
     async findById(id: number): Promise<Tarefa> {
         let tarefa = await this.tarefarepository.findOne({
             where: {
                 id
+            },
+            relations: {
+                categoria: true
             }
         })
 
@@ -31,6 +38,9 @@ export class TarefaService {
         return this.tarefarepository.find({
             where: {
                 nome: ILike(`%${nome}%`)
+            },
+            relations: {
+                categoria: true
             }
         })
     }

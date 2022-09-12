@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Categoria } from './categoria/entities/categoria.entity';
+import { CategoriaModule } from './categoria/module/categoria.module';
 import { Tarefa } from './tarefa/entities/tarefa.entity';
 import { TarefaModule } from './tarefa/modules/tarefa.module';
 
@@ -14,10 +16,11 @@ import { TarefaModule } from './tarefa/modules/tarefa.module';
       username: 'root',
       password: '11072512',
       database: 'db_todo',
-      entities: [Tarefa],
+      entities: [Tarefa, Categoria],
       synchronize: true
     }),
-    TarefaModule
+    TarefaModule,
+    CategoriaModule
   ],
   controllers: [],
   providers: [],
